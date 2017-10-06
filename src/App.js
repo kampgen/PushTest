@@ -7,6 +7,7 @@ import {
 } from 'react-native'
 import firebase from 'firebase'
 import FCM, { FCMEvent } from 'react-native-fcm'
+import {Platform} from 'react-native'
 
 export default class App extends Component {
     constructor(props) {
@@ -19,6 +20,13 @@ export default class App extends Component {
     }
 
     componentDidMount() {
+        if (Platform.OS === 'ios') FCM.requestPermissions()
+
+        FCM.getFCMToken().then(token => {
+            console.log(token)
+            // store fcm token in your server
+        });
+
         FCM.getInitialNotification().then(notif => {
             if(!notif) return
             // App is closed
