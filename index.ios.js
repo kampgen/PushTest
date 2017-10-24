@@ -5,6 +5,7 @@ import {
   Text,
   View
 } from 'react-native';
+import App from './src/App'
 
 export default class PushNotification extends Component {
   render() {

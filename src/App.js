@@ -27,28 +27,32 @@ export default class App extends Component {
             // store fcm token in your server
         });
 
+        FCM.getFCMToken().then(token => {
+            console.log("TOKEN", token)
+            // store fcm token in your server
+        });
+
         FCM.getInitialNotification().then(notif => {
             if(!notif) return
             // App is closed
-            if(notif.opened_from_tray && notif.from) {
+            if(Platform.OS === 'ios' || (notif.opened_from_tray && notif.from)) {
                 this.actionsAfterLoading.push( () => this.notificationRedirect(notif.action))
             }
         }, (err) => console.warn(err))
         this.notificationListener = FCM.on(FCMEvent.Notification, notif => {
             if(!notif) return
             // App is in background
-            if(notif.opened_from_tray && notif.from) {
-                this.notificationRedirect()
+            if(notif.opened_from_tray && (Platform.OS === 'ios' || notif.from)) {
+                this.notificationRedirect(notif.action)
             // App is opened
             } else {
-                console.warn("ação realizada quando o aplicativo ainda está aberto");
+                console.log("action");
             }
         })
     }
 
     notificationRedirect() {
         console.warn("teste");
-
     }
 
     componentWillMount() {

@@ -6,13 +6,12 @@ target 'PushNotification' do
   # use_frameworks!
 
   # Pods for PushNotification
-  pod 'FirebaseMessaging'
-  pod 'Firebase/Core'
+pod 'Firebase/Messaging'
 
-  target 'PushNotification-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  # target 'PushNotification-tvOSTests' do
+  #   inherit! :search_paths
+  #   # Pods for testing
+  # end
 
   target 'PushNotificationTests' do
     inherit! :search_paths
@@ -21,10 +20,10 @@ target 'PushNotification' do
 
 end
 
-target 'PushNotification-tvOS' do
-  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
-
-  # Pods for PushNotification-tvOS
-
-end
+# target 'PushNotification-tvOS' do
+#   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+#   # use_frameworks!
+#
+#   # Pods for PushNotification-tvOS
+#
+# end
